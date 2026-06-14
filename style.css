@@ -1,0 +1,652 @@
+/* ==========================================
+   1. GLOBAL SYSTEM ARCHITECTURE & CYBER THEME
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Deep Rich Dark Theme Backgrounds */
+    --bg-main: #090d16;         /* Cosmic Midnight Dark Blue */
+    --bg-card: #131a2c;         /* Premium Slate Navy for Cards */
+    --navbar-bg: rgba(9, 13, 22, 0.85);
+    
+    /* Neon Glow Accents */
+    --primary: #6366f1;         /* Electric Indigo */
+    --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    
+    /* Text Typography */
+    --text-main: #f8fafc;       /* Crisp Platinum White */
+    --text-muted: #94a3b8;      /* Cool Technical Gray */
+    --border-glow: #1e293b;     /* Clean Grid Borders */
+    --border-hover: #334155;
+    
+    /* System Tokens */
+    --radius-premium: 16px;
+    --radius-button: 8px;
+    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-matrix: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* Subtle dot-grid background for engineering vibe */
+    background-image: radial-gradient(#1e293b 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* ==========================================
+   2. GLASSMORPHIC BLUR NAVBAR
+   ========================================== */
+.navbar {
+    background-color: var(--navbar-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-glow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text-main);
+}
+
+.logo span {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    margin: 0 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: var(--radius-button);
+    transition: var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-post {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: var(--radius-button);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.btn-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+}
+
+/* ==========================================
+   3. CYBER PUNCH HERO AREA (Matrix Light Orb)
+   ========================================== */
+.hero-section {
+    padding: 90px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-glow);
+}
+
+/* Ambient Purple Glow Orb behind text */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 700px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+}
+
+.hero-section p {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Embedded Translucent Search Terminal */
+.search-box {
+    background: rgba(19, 26, 44, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-glow);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: var(--radius-premium);
+    display: flex;
+    gap: 12px;
+    box-shadow: var(--shadow-matrix);
+}
+
+.search-box input {
+    flex: 1;
+    border: 1px solid var(--border-glow);
+    background: #090d16;
+    padding: 16px 20px;
+    border-radius: var(--radius-button);
+    font-size: 1rem;
+    outline: none;
+    color: #ffffff;
+    transition: var(--transition);
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.btn-search {
+    background: #ffffff;
+    color: #090d16;
+    border: none;
+    padding: 0 32px;
+    border-radius: var(--radius-button);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-search:hover {
+    background: #e2e8f0;
+    transform: scale(1.02);
+}
+
+/* ==========================================
+   4. TWO-COLUMN PORTAL ENVIRONMENT
+   ========================================== */
+.portal-layout {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+}
+
+/* Sidebar Dashboard Filters */
+.filters-sidebar {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    padding: 28px;
+    border-radius: var(--radius-premium);
+    box-shadow: var(--shadow-matrix);
+    height: fit-content;
+}
+
+.filters-sidebar h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.filter-group {
+    margin-bottom: 30px;
+}
+
+.filter-group h4 {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-group label:hover {
+    color: #ffffff;
+}
+
+.filter-group input {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* Cyber Job Cards System */
+.job-listings h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.job-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    padding: 32px;
+    border-radius: var(--radius-premium);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-matrix);
+    transition: var(--transition);
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+/* Glowing Indicator strip for Featured posts */
+.job-card.featured {
+    position: relative;
+    border-left: 4px solid var(--primary);
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.03) 0%, transparent 100%), var(--bg-card);
+}
+
+.job-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.company-name {
+    font-size: 0.85rem;
+    color: #818cf8;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.job-card h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-top: 4px;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+/* Translucent Glowing Pills Badges */
+.badge {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.badge-intern { 
+    background-color: rgba(99, 102, 241, 0.15); 
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-full { 
+    background-color: rgba(16, 185, 129, 0.15); 
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.job-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 28px;
+}
+
+.job-card-footer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--border-glow);
+    padding-top: 24px;
+}
+
+.job-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-right: 24px;
+    font-weight: 500;
+}
+
+.btn-apply {
+    background-color: #1e293b;
+    color: #ffffff;
+    border: 1px solid var(--border-glow);
+    padding: 12px 24px;
+    border-radius: var(--radius-button);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-left: auto;
+    transition: var(--transition);
+}
+
+.btn-apply:hover {
+    background: #ffffff;
+    color: #090d16;
+    border-color: #ffffff;
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+}
+
+/* ==========================================
+   5. INTERFACE DASHBOARD CONTROL
+   ========================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    padding: 28px;
+    border-radius: var(--radius-premium);
+    box-shadow: var(--shadow-matrix);
+}
+
+.stat-card h4 {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.stat-card .value {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.table-responsive {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-premium);
+    padding: 32px;
+    box-shadow: var(--shadow-matrix);
+}
+
+.management-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.management-table th {
+    padding: 14px 20px;
+    border-bottom: 2px solid var(--border-glow);
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.management-table td {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-glow);
+    font-size: 1rem;
+    color: #e2e8f0;
+}
+
+/* ==========================================
+   6. PORTAL FOOTER
+   ========================================== */
+.portal-footer {
+    background-color: var(--bg-main);
+    border-top: 1px solid var(--border-glow);
+    text-align: center;
+    padding: 32px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 100px;
+}
+
+/* ==========================================
+   7. SEAMLESS RESPONSIVE LAYER
+   ========================================== */
+@media (max-width: 968px) {
+    .portal-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    .search-box {
+        flex-direction: column;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    .btn-search {
+        padding: 16px;
+    }
+}
+/* ==========================================
+   8. ENHANCED CYBER PUNCH FOOTER SYSTEM
+   ========================================== */
+.portal-footer {
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-glow);
+    padding: 60px 20px 30px 20px;
+    margin-top: 120px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border-glow);
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 12px;
+    margin-bottom: 20px;
+    max-width: 320px;
+}
+
+/* System Status Indicator (Live Vibe) */
+.system-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.08);
+    color: #34d399;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Footer Navigation Columns */
+.footer-links-col h4, .footer-newsletter h4 {
+    color: #ffffff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.footer-links-col a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.footer-links-col a:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* Mini Newsletter Wrapper */
+.footer-newsletter p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+}
+
+.footer-input-group {
+    display: flex;
+    gap: 8px;
+}
+
+.footer-input-group input {
+    flex: 1;
+    background: #090d16;
+    border: 1px solid var(--border-glow);
+    padding: 10px 14px;
+    border-radius: var(--radius-button);
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.footer-input-group input:focus {
+    border-color: var(--primary);
+}
+
+.btn-footer-sub {
+    background: #ffffff;
+    color: #090d16;
+    border: none;
+    padding: 0 16px;
+    border-radius: var(--radius-button);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-footer-sub:hover {
+    background: #e2e8f0;
+}
+
+/* Bottom Bar Alignment */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 30px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footer-socials a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.footer-socials a:hover {
+    color: #ffffff;
+}
+
+/* Responsive Footer Layout for Tablets/Mobiles */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    .footer-socials {
+        margin-top: 10px;
+    }
+    .footer-socials a {
+        margin: 0 10px;
+    }
+}
