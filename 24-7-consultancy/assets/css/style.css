@@ -1,0 +1,32 @@
+/* Global Color Variables & Themes */
+:root {
+    --primary-deep: #1a365d;       /* Royal Blue Tone */
+    --accent-vibrant: #3182ce;     /* Bright Blue for Buttons */
+    --text-dark: #2c3e50;          /* Charcoal text for better readability */
+    --bg-light: #f8fafc;           /* Sleek grayish white background */
+    --font-primary: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Base Level Universal Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Body Styling */
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.25;
+    overflow-x: hidden;
+}
+
+/* Smooth Container Layout Helpers */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
