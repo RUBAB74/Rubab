@@ -17,7 +17,7 @@
                 <a href="companies.html">Companies</a>
                 <a href="dashboard.html" class="active">Dashboard</a>
             </div>
-            <button class="btn-post">Post a Job</button>
+            <a href="post-job.html" class="btn-post" style="text-decoration: none;">Post a Job</a>
         </div>
     </nav>
 
@@ -120,6 +120,20 @@
         </div>
     </footer>
      
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const activeJobsCounter = document.querySelector('.stat-card:nth-child(1) .value');
+        const totalAppsCounter = document.querySelector('.stat-card:nth-child(2) .value');
 
+        // Check applications from localStorage (Option A status validation)
+        let savedApps = localStorage.getItem('totalApplications') || 48;
+        if(totalAppsCounter) totalAppsCounter.textContent = savedApps;
+
+        // Custom jobs count logic (Base posts are 3)
+        let customJobs = JSON.parse(localStorage.getItem('customJobs')) || [];
+        let grandTotalJobs = 3 + customJobs.length;
+        if(activeJobsCounter) activeJobsCounter.textContent = grandTotalJobs;
+    });
+</script>
 </body>
 </html>
