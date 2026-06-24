@@ -650,5 +650,66 @@ body {
         margin: 0 10px;
     }
 }
+/* Modal Wrapper: Shuru mein hidden rahe ga jab tak click na ho */
+.modal-wrapper {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(9, 13, 22, 0.85); /* Transparent dark background */
+    backdrop-filter: blur(8px);        /* Background blur effect */
+    z-index: 1000;                     /* Sab se ooper show ho */
+    justify-content: center;
+    align-items: center;
+}
 
+/* Modal Content Box */
+.modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    padding: 30px;
+    border-radius: var(--radius-premium);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+}
 
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.btn-close:hover { color: #ffffff; }
+
+/* Form inputs styling inside modal */
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.form-group input {
+    background: #090d16;
+    border: 1px solid var(--border-glow);
+    padding: 12px;
+    border-radius: var(--radius-button);
+    color: #ffffff;
+    outline: none;
+}
+
+.form-group input:focus { border-color: var(--primary); }
