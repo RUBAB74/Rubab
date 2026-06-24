@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zynvex Jobs | Post a Job</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Zynvex<span>Jobs</span></div>
+            <div class="nav-links">
+                <a href="index.html">Find Jobs</a>
+                <a href="companies.html">Companies</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+            <a href="post-job.html" class="btn-post" style="text-decoration: none;">Post a Job</a>
+        </div>
+    </nav>
+
+    <main style="max-width: 600px; margin: 60px auto; padding: 0 20px;">
+        <div class="table-responsive" style="padding: 40px;">
+            <h2 style="margin-bottom: 24px; font-weight: 800; color: #ffffff;">Post a New Tech Role</h2>
+            
+            <form id="jobPostForm">
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" id="jobTitle" required placeholder="e.g. Senior Frontend Engineer">
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="companyName" required placeholder="e.g. Zynvex Solutions">
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="jobLoc" required placeholder="e.g. Peshawar (On-site) / Remote">
+                </div>
+                <div class="form-group">
+                    <label>Salary Range</label>
+                    <input type="text" id="jobSalary" required placeholder="e.g. PKR 50k - 70k">
+                </div>
+                <div class="form-group">
+                    <label>Job Type Badge</label>
+                    <input type="text" id="jobBadge" required placeholder="e.g. Internship or Full-time">
+                </div>
+                <div class="form-group" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px;">
+                    <label style="font-size: 0.85rem; color: var(--text-muted);">Job Description</label>
+                    <textarea id="jobDesc" rows="4" style="background: #090d16; border: 1px solid var(--border-glow); padding: 12px; border-radius: var(--radius-button); color: #ffffff; outline: none; font-family: inherit; resize: none;" required placeholder="Describe core responsibilities..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-post" style="width: 100%; margin-top: 10px; padding: 14px; font-size: 1rem;">Publish Job Listing</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Form Submit handle krna
+        document.getElementById('jobPostForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Data object ready krna
+            const newJob = {
+                title: document.getElementById('jobTitle').value,
+                company: document.getElementById('companyName').value,
+                location: document.getElementById('jobLoc').value,
+                salary: document.getElementById('jobSalary').value,
+                badge: document.getElementById('jobBadge').value,
+                desc: document.getElementById('jobDesc').value
+            };
+
+            // Purani jobs nikalna ya khali array banana
+            let localJobs = JSON.parse(localStorage.getItem('customJobs')) || [];
+            localJobs.unshift(newJob); // New job ko top pr rakhna
+            
+            // Browser memory mein save krna
+            localStorage.setItem('customJobs', JSON.stringify(localJobs));
+
+            // Wapis jobs list par bhej dena
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
