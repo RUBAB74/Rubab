@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zynvex Jobs | Developer Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Zynvex<span>Jobs</span></div>
+            <div class="nav-links">
+              <a href="index.html" class="active">Find Jobs</a>
+    <a href="companies.html">Companies</a> <a href="#">Dashboard</a>
+            </div>
+            <a href="post-job.html" class="btn-post" style="text-decoration: none;">Post a Job</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <h1>Find Your Dream Frontend Job</h1>
+        <p>Discover the next step in your software engineering career</p>
+        
+        <div class="search-box">
+           <input type="text" id="search-title" placeholder="Job title or keywords...">
+    <input type="text" id="search-location" placeholder="Location...">
+    <button class="btn-search">Search</button>
+        </div>
+    </header>
+
+    <main class="portal-layout">
+        
+        <aside class="filters-sidebar">
+            <h3>Filter Jobs</h3>
+            
+            <div class="filter-group">
+                <h4>Job Type</h4>
+                <label><input type="checkbox" class="filter-checkbox"> Full-time</label>
+                <label><input type="checkbox"> Part-time</label>
+                <label><input type="checkbox" class="filter-checkbox"> Internship</label>
+                <label><input type="checkbox"> Remote</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Experience Level</h4>
+                <label><input type="checkbox" checked> Entry Level</label>
+                <label><input type="checkbox"> Mid-Level</label>
+                <label><input type="checkbox"> Senior Level</label>
+            </div>
+        </aside>
+
+        <section class="job-listings">
+            <h2>Recent Openings (3)</h2>
+
+            <article class="job-card featured">
+                <div class="job-card-header">
+                    <div>
+                        <span class="company-name">Zynvex Solutions</span>
+                        <h3>Frontend Developer Intern</h3>
+                    </div>
+                    <span class="badge badge-intern">Internship</span>
+                </div>
+                <p class="job-desc">Join our fast-paced frontend engineering team to build enterprise React and Next.js platforms. Strict Git workflow experience is a plus.</p>
+                <div class="job-card-footer">
+                    <span class="job-meta">📍 Peshawar (On-site)</span>
+                    <span class="job-meta">💰 PKR 35k - 50k</span>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <span class="company-name">TechVision Lab</span>
+                        <h3>Junior UI/UX Engineer</h3>
+                    </div>
+                    <span class="badge badge-full">Full-time</span>
+                </div>
+                <p class="job-desc">Looking for a junior developer with strong CSS Box Model foundations and pixel-perfect design-to-code transformation skills.</p>
+                <div class="job-card-footer">
+                    <span class="job-meta">📍 Remote (Pakistan)</span>
+                    <span class="job-meta">💰 PKR 70k - 90k</span>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <span class="company-name">Workvision Construction</span>
+                        <h3>Software Quality Engineer</h3>
+                    </div>
+                    <span class="badge badge-full">Full-time</span>
+                </div>
+                <p class="job-desc">Responsible for black-box testing, designing comprehensive test case suites, and ensuring system quality across internal web apps.</p>
+                <div class="job-card-footer">
+                    <span class="job-meta">📍 Lahore (Hybrid)</span>
+                    <span class="job-meta">💰 PKR 100k+</span>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer class="portal-footer">
+        <div class="footer-container">
+            
+            <div class="footer-brand">
+                <div class="logo">Zynvex<span>Jobs</span></div>
+                <p>Connecting elite software engineering talent with premium production platforms across Pakistan.</p>
+                <div class="system-status">
+                    <span class="status-dot"></span> All Systems Operational
+                </div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Platform</h4>
+                <a href="index.html">Find Jobs</a>
+                <a href="companies.html">Top Companies</a>
+                <a href="dashboard.html">Employer Dashboard</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Community</h4>
+                <a href="#">Git Guide</a>
+                <a href="#">UI/UX Foundations</a>
+                <a href="#">QA Frameworks</a>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <p>Get instant alerts for new frontend roles.</p>
+                <div class="footer-input-group">
+                    <input type="email" placeholder="Enter developer email...">
+                    <button class="btn-footer-sub">Join</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Zynvex Jobs. Engineered with modern CSS Grid architecture.</p>
+            <div class="footer-socials">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+    <div id="applyModal" class="modal-wrapper">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Submit Application</h3>
+            <button id="closeModal" class="btn-close">&times;</button>
+        </div>
+        <form id="applyForm">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" required placeholder="Ali Khan">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" required placeholder="ali@example.com">
+            </div>
+            <div class="form-group">
+                <label>GitHub / Portfolio Link</label>
+                <input type="url" required placeholder="https://github.com/yourprofile">
+            </div>
+            <button type="submit" class="btn-post" style="width: 100%; margin-top: 15px;">Submit Application</button>
+        </form>
+    </div>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
