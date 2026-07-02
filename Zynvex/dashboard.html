@@ -124,15 +124,59 @@
     document.addEventListener('DOMContentLoaded', () => {
         const activeJobsCounter = document.querySelector('.stat-card:nth-child(1) .value');
         const totalAppsCounter = document.querySelector('.stat-card:nth-child(2) .value');
+        const tableBody = document.querySelector('.management-table tbody');
 
-        // Check applications from localStorage (Option A status validation)
-        let savedApps = localStorage.getItem('totalApplications') || 48;
-        if(totalAppsCounter) totalAppsCounter.textContent = savedApps;
+        // 1. Application stats counter update karna
+        let savedAppsCount = localStorage.getItem('totalApplications') || 48;
+        if(totalAppsCounter) totalAppsCounter.textContent = savedAppsCount;
 
-        // Custom jobs count logic (Base posts are 3)
+        // 2. Custom jobs counter update karna
         let customJobs = JSON.parse(localStorage.getItem('customJobs')) || [];
         let grandTotalJobs = 3 + customJobs.length;
         if(activeJobsCounter) activeJobsCounter.textContent = grandTotalJobs;
+
+        // 3. Dynamic Applications Table Data Render karna
+        let userApplications = JSON.parse(localStorage.getItem('jobApplications')) || [];
+        
+        if (userApplications.length > 0 && tableBody) {
+            // Agar real-time applications hain, toh pehle table clear karke unhe render karo
+            let rowsHTML = '';
+            
+            userApplications.forEach(app => {
+                rowsHTML += `
+                    <tr>
+                        <td style="font-weight: 600;">${app.name}</td>
+                        <td>${app.position}</td>
+                        <td>${app.date}</td>
+                        <td><span class="badge badge-intern">${app.status}</span></td>
+                    </tr>
+                `;
+            });
+
+            // Hardcoded purana data bhi nichay barqarar rakhne ke liye plus kar dete hain
+            const defaultRowsHTML = `
+                <tr>
+                    <td style="font-weight: 600;">Ali Khan</td>
+                    <td>Frontend Developer Intern</td>
+                    <td>June 12, 2026</td>
+                    <td><span class="badge badge-intern">Under Review</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Zainab Raza</td>
+                    <td>Software Quality Engineer</td>
+                    <td>June 10, 2026</td>
+                    <td><span class="badge badge-full" style="background-color: #fef9c3; color: #a16207;">Shortlisted</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Ahmed Mansoor</td>
+                    <td>Junior UI/UX Engineer</td>
+                    <td>June 08, 2026</td>
+                    <td><span class="badge badge-full">Interviewed</span></td>
+                </tr>
+            `;
+
+            tableBody.innerHTML = rowsHTML + defaultRowsHTML;
+        }
     });
 </script>
 </body>
