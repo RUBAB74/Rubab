@@ -36,7 +36,7 @@
                 <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 12px; font-weight: 500;">📍 Peshawar, Pakistan</p>
                 <p class="job-desc">Enterprise frontend development and agile software engineering firm powering production systems globally.</p>
                 <div class="job-card-footer" style="padding-top: 16px;">
-                    <span class="badge badge-intern">1 Active Job</span>
+                    <span class="badge badge-intern" id="count-zynvex">1 Active Job</span>
                 </div>
             </article>
 
@@ -50,7 +50,7 @@
                 <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 12px; font-weight: 500;">📍 Lahore, Pakistan</p>
                 <p class="job-desc">Leading infrastructure management corporation optimizing logistics and standard quality building operations.</p>
                 <div class="job-card-footer" style="padding-top: 16px;">
-                    <span class="badge badge-full">2 Active Jobs</span>
+                    <span class="badge badge-full" id="count-workvision">2 Active Jobs</span>
                 </div>
             </article>
 
@@ -60,6 +60,37 @@
     <footer class="portal-footer">
         <p>&copy; 2026 Zynvex Jobs Portal. Designed with strict CSS layout patterns.</p>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const customJobs = JSON.parse(localStorage.getItem('customJobs')) || [];
+        
+        // Base counts jo pehle se mojud jobs hain
+        let zynvexCount = 1;
+        let workvisionCount = 2;
+
+        // Loop chala kar count check krna
+        customJobs.forEach(job => {
+            const companyName = job.company.toLowerCase().trim();
+            
+            if (companyName.includes('zynvex')) {
+                zynvexCount++;
+            } else if (companyName.includes('workvision')) {
+                workvisionCount++;
+            }
+        });
+
+        // HTML elements ko update krna
+        const zynvexBadge = document.getElementById('count-zynvex');
+        const workvisionBadge = document.getElementById('count-workvision');
+
+        if (zynvexBadge) {
+            zynvexBadge.textContent = `${zynvexCount} Active Job${zynvexCount > 1 ? 's' : ''}`;
+        }
+        if (workvisionBadge) {
+            workvisionBadge.textContent = `${workvisionCount} Active Job${workvisionCount > 1 ? 's' : ''}`;
+        }
+    });
+</script>
 
 </body>
 </html>
