@@ -1,5 +1,5 @@
 
-// RENDER LIVE JOBS FROM MEMORY
+// 1. RENDER LIVE JOBS FROM MEMORY & UPDATE COUNTERS
 
 document.addEventListener('DOMContentLoaded', () => {
     const listingsContainer = document.querySelector('.job-listings');
@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (listingsContainer) {
         const customJobs = JSON.parse(localStorage.getItem('customJobs')) || [];
         
+        // Custom Jobs ko list mein render karne ka logic
         customJobs.forEach(job => {
-            // Check krna k badge color full-time rakhna hay ya intern
             const isIntern = job.badge.toLowerCase().includes('intern');
             const badgeClass = isIntern ? 'badge-intern' : 'badge-full';
             
@@ -30,113 +30,191 @@ document.addEventListener('DOMContentLoaded', () => {
                 </article>
             `;
             
-            // Recent Openings ki heading (h2) k theek baad naya card inject krna
             const heading = listingsContainer.querySelector('h2');
             if (heading) {
                 heading.insertAdjacentHTML('afterend', jobCardHTML);
             }
         });
+
+        // CRUCIAL BUG FIX: Micro-delay ke sath counter chalana taake DOM cards load ho sakein
+        setTimeout(() => {
+            const totalJobsCounter = document.getElementById('total-job-count') || document.getElementById('total-jobs-count');
+            if (totalJobsCounter) {
+                const totalCardsOnScreen = document.querySelectorAll('.job-card').length;
+                totalJobsCounter.textContent = totalCardsOnScreen;
+            }
+        }, 50); // 50ms ka safe rendering browser break window
     }
-});
-// Elements ko handle krny k leye select krna
-const modal = document.getElementById('applyModal');
-const closeModalBtn = document.getElementById('closeModal');
-const applyButtons = document.querySelectorAll('.btn-apply'); // Aap k design k sab "Apply Now" buttons
-const applyForm = document.getElementById('applyForm');
 
-// 1. Jab kisi bhi "Apply Now" button par click ho toh modal dikhao
-applyButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault(); // Page reload hony se rokna
-        modal.style.display = 'flex'; // Dikhaye ga popup
+    // Elements Selection Inside DOMContentLoaded (Safe Practice)
+    const modal = document.getElementById('applyModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const applyForm = document.getElementById('applyForm');
+    let selectedJobTitle = "Frontend Developer Intern"; // Default fallback
+
+    // Event Delegation (Dono static aur dynamic cards ke liye handle karega)
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('btn-apply')) {
+            e.preventDefault();
+            
+            const jobCard = e.target.closest('.job-card');
+            if (jobCard) {
+                const titleElement = jobCard.querySelector('h3');
+                if (titleElement) {
+                    selectedJobTitle = titleElement.textContent.trim();
+                }
+            }
+            
+            if (modal) modal.style.display = 'flex'; // Popup dikhao
+        }
     });
-});
 
-// 2. Jab 'X' button par click ho toh modal hide kr do
-closeModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// 3. Agar user popup k baahir background par click kray toh bhi bnd ho jaye
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
+    // Close modal handles
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+        });
     }
-});
 
-// 4. Form submit krny pr feedback
-applyForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Application Submitted Successfully! 🚀');
-    modal.style.display = 'none'; // Close modal
-    applyForm.reset(); // Clear fields
-});
-
-// SEARCH & CHECKBOX FILTER LOGIC
-
-
-// Elements ko select krna
-const searchTitleInput = document.getElementById('search-title');
-const searchLocationInput = document.getElementById('search-location');
-const searchButton = document.querySelector('.btn-search');
-const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
-const allJobCards = document.querySelectorAll('.job-card');
-
-// Main function jo cards ko filter kray ga
-function filterJobs() {
-    const titleValue = searchTitleInput ? searchTitleInput.value.toLowerCase() : '';
-    const locationValue = searchLocationInput ? searchLocationInput.value.toLowerCase() : '';
-
-    // Checked checkboxes ki list banana
-    const activeFilters = [];
-    filterCheckboxes.forEach(cb => {
-        if (cb.checked) {
-            // Checkbox k barabar likha hua text (e.g., "Full-time") layout se lena
-            activeFilters.push(cb.parentElement.textContent.trim().toLowerCase());
+    window.addEventListener('click', (e) => {
+        if (modal && e.target === modal) {
+            modal.style.display = 'none';
         }
     });
 
-    // Ek ek job card par loop chalana aur check krna
-    allJobCards.forEach(card => {
-        const jobTitle = card.querySelector('h3').textContent.toLowerCase();
-        const companyName = card.querySelector('.company-name').textContent.toLowerCase();
-        
-        // Card k andar se badge text aur baqi elements lena
-        const cardText = card.textContent.toLowerCase();
-
-        // 1. Title aur Company name match krna
-        const matchesTitle = jobTitle.includes(titleValue) || companyName.includes(titleValue);
-        
-        // 2. Location match krna
-        const matchesLocation = cardText.includes(locationValue);
-
-        // 3. Checkboxes filters match krna
-        let matchesCheckboxes = true;
-        if (activeFilters.length > 0) {
-            // Agar koi checkbox selected hai, toh check kro k card mein us ka text majood hai ya nahi
-            matchesCheckboxes = activeFilters.some(filter => cardText.includes(filter));
-        }
-
-        // Agar teeno conditions sach hain, toh card dikhao, warna chupa do
-        if (matchesTitle && matchesLocation && matchesCheckboxes) {
-            card.style.display = 'block'; // Show card
-        } else {
-            card.style.display = 'none';  // Hide card
-        }
-    });
-}
-
-// Event Listeners: Jab user input box mein kuch type kray ga, automatic filter chalay ga
-if (searchTitleInput) searchTitleInput.addEventListener('input', filterJobs);
-if (searchLocationInput) searchLocationInput.addEventListener('input', filterJobs);
-
-// Checkboxes pr tick lagane pr automatic filter chalana
-filterCheckboxes.forEach(cb => cb.addEventListener('change', filterJobs));
-
-// Search button pr click krne pr bhi filter chalana
-if (searchButton) {
-    searchButton.addEventListener('click', (e) => {
+    // Form submit storage logic
+   if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        filterJobs();
+        
+        const nameInput = applyForm.querySelector('input[type="text"]').value;
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        const today = new Date().toLocaleDateString('en-US', options);
+
+        const newApplication = {
+            name: nameInput,
+            position: selectedJobTitle,
+            date: today,
+            status: 'Under Review'
+        };
+
+        // Local Storage processing
+        let savedApps = JSON.parse(localStorage.getItem('jobApplications')) || [];
+        savedApps.unshift(newApplication);
+        localStorage.setItem('jobApplications', JSON.stringify(savedApps));
+        
+        let currentTotal = parseInt(localStorage.getItem('totalApplications')) || 48;
+        localStorage.setItem('totalApplications', currentTotal + 1);
+
+        // UI ANIMATION INTERACTION (v0 + Lottie Vibe)
+    
+        applyForm.style.display = 'none';
+        const successWrapper = document.getElementById('successAnimationWrapper');
+        if (successWrapper) successWrapper.style.display = 'block';
+
+        // 3 Seconds baad automatically popup bundle close ho jaye aur reset ho
+        setTimeout(() => {
+            if (modal) modal.style.display = 'none';
+            applyForm.reset();
+            
+            // State ko reset karna taake agli application ke liye form wapis dikhe
+            applyForm.style.display = 'block';
+            if (successWrapper) successWrapper.style.display = 'none';
+            
+            // Dashboard values updates reload automatically
+            window.location.reload();
+        }, 3200); 
     });
 }
+
+   
+    // 2. SEARCH & CHECKBOX FILTER LOGIC
+    
+    const searchTitleInput = document.getElementById('search-title');
+    const searchLocationInput = document.getElementById('search-location');
+    const searchButton = document.querySelector('.btn-search');
+    const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+
+    function filterJobs() {
+        const titleValue = searchTitleInput ? searchTitleInput.value.toLowerCase() : '';
+        const locationValue = searchLocationInput ? searchLocationInput.value.toLowerCase() : '';
+
+        const activeFilters = [];
+        filterCheckboxes.forEach(cb => {
+            if (cb.checked) {
+                activeFilters.push(cb.parentElement.textContent.trim().toLowerCase());
+            }
+        });
+
+        // Loop chalane ke liye saare cards (existing + new) function ke andar select honge
+        const allJobCards = document.querySelectorAll('.job-card');
+
+        allJobCards.forEach(card => {
+            const jobTitle = card.querySelector('h3').textContent.toLowerCase();
+            const companyName = card.querySelector('.company-name').textContent.toLowerCase();
+            const cardText = card.textContent.toLowerCase();
+
+            const matchesTitle = jobTitle.includes(titleValue) || companyName.includes(titleValue);
+            const matchesLocation = cardText.includes(locationValue);
+
+            let matchesCheckboxes = true;
+            if (activeFilters.length > 0) {
+                matchesCheckboxes = activeFilters.some(filter => cardText.includes(filter));
+            }
+
+            if (matchesTitle && matchesLocation && matchesCheckboxes) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Filter Event Listeners
+    if (searchTitleInput) searchTitleInput.addEventListener('input', filterJobs);
+    if (searchLocationInput) searchLocationInput.addEventListener('input', filterJobs);
+    filterCheckboxes.forEach(cb => cb.addEventListener('change', filterJobs));
+
+    if (searchButton) {
+        searchButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            filterJobs();
+        });
+    }
+});
+
+// COMPANIES SEARCH & CATEGORY FILTER ENGINE
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Companies page ke parameters check karna
+    const companySearchInput = document.querySelector('input[placeholder*="company..."]') || document.getElementById('search-title'); 
+    const companyCards = document.querySelectorAll('.job-card');
+
+    // Agar hum companies.html page par hain
+    if (companyCards.length > 0 && window.location.pathname.includes('companies.html')) {
+        
+        function filterCompanies() {
+            const searchValue = companySearchInput ? companySearchInput.value.toLowerCase().trim() : '';
+            
+            companyCards.forEach(card => {
+                const companyTitle = card.querySelector('h3').textContent.toLowerCase();
+                const industryType = card.querySelector('.company-name').textContent.toLowerCase();
+                const cardText = card.textContent.toLowerCase();
+
+                // Match parameters
+                const matchesSearch = companyTitle.includes(searchValue) || industryType.includes(searchValue);
+
+                if (matchesSearch) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.4s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        if (companySearchInput) {
+            companySearchInput.addEventListener('input', filterCompanies);
+        }
+    }
+});
