@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,8 +15,9 @@
         <div class="nav-container">
             <div class="logo">Zynvex<span>Jobs</span></div>
             <div class="nav-links">
-              <a href="index.html" class="active">Find Jobs</a>
-    <a href="companies.html">Companies</a> <a href="#">Dashboard</a>
+                <a href="index.html" class="active">Find Jobs</a>
+                <a href="companies.html">Companies</a> 
+                <a href="dashboard.html">Dashboard</a>
             </div>
             <a href="post-job.html" class="btn-post" style="text-decoration: none;">Post a Job</a>
         </div>
@@ -27,64 +28,39 @@
         <p>Discover the next step in your software engineering career</p>
         
         <div class="search-box">
-           <input type="text" id="search-title" placeholder="Job title or keywords...">
-    <input type="text" id="search-location" placeholder="Location...">
-    <button class="btn-search">Search</button>
+           <input type="text" id="search-title" placeholder="Job title or company...">
+           <input type="text" id="search-location" placeholder="Work location...">
+           <button class="btn-search">Search Jobs</button>
         </div>
     </header>
 
     <main class="portal-layout">
-        
-        <aside class="filters-sidebar">
+        <aside class="sidebar-filters">
             <h3>Filter Jobs</h3>
-            
             <div class="filter-group">
                 <h4>Job Type</h4>
-                <label><input type="checkbox" class="filter-checkbox"> Full-time</label>
-                <label><input type="checkbox"> Part-time</label>
-                <label><input type="checkbox" class="filter-checkbox"> Internship</label>
-                <label><input type="checkbox"> Remote</label>
-            </div>
-
-            <div class="filter-group">
-                <h4>Experience Level</h4>
-                <label><input type="checkbox" checked> Entry Level</label>
-                <label><input type="checkbox"> Mid-Level</label>
-                <label><input type="checkbox"> Senior Level</label>
+               <label><input type="checkbox" class="filter-checkbox"> Full-time</label>
+        <label><input type="checkbox" class="filter-checkbox"> Part-time</label>
+        <label><input type="checkbox" class="filter-checkbox"> Contract</label>
+        <label><input type="checkbox" class="filter-checkbox"> Intern</label>
             </div>
         </aside>
 
-        <section class="job-listings">
-            <h2>Recent Openings (3)</h2>
+        <div class="job-listings">
+            <h2>Recent Openings (<span id="total-jobs-count">3</span>)</h2>
 
-            <article class="job-card featured">
+            <article class="job-card">
                 <div class="job-card-header">
                     <div>
                         <span class="company-name">Zynvex Solutions</span>
                         <h3>Frontend Developer Intern</h3>
                     </div>
-                    <span class="badge badge-intern">Internship</span>
+                    <span class="badge badge-intern">Intern</span>
                 </div>
-                <p class="job-desc">Join our fast-paced frontend engineering team to build enterprise React and Next.js platforms. Strict Git workflow experience is a plus.</p>
+                <p class="job-desc">Join our core web engineering team working with interactive frontend elements, modern responsive structures, and dynamic web interfaces.</p>
                 <div class="job-card-footer">
-                    <span class="job-meta">📍 Peshawar (On-site)</span>
-                    <span class="job-meta">💰 PKR 35k - 50k</span>
-                    <button class="btn-apply">Apply Now</button>
-                </div>
-            </article>
-
-            <article class="job-card">
-                <div class="job-card-header">
-                    <div>
-                        <span class="company-name">TechVision Lab</span>
-                        <h3>Junior UI/UX Engineer</h3>
-                    </div>
-                    <span class="badge badge-full">Full-time</span>
-                </div>
-                <p class="job-desc">Looking for a junior developer with strong CSS Box Model foundations and pixel-perfect design-to-code transformation skills.</p>
-                <div class="job-card-footer">
-                    <span class="job-meta">📍 Remote (Pakistan)</span>
-                    <span class="job-meta">💰 PKR 70k - 90k</span>
+                    <span class="job-meta">📍 Peshawar, Pakistan</span>
+                    <span class="job-meta">💰 Rs 35,000 / mo</span>
                     <button class="btn-apply">Apply Now</button>
                 </div>
             </article>
@@ -97,41 +73,51 @@
                     </div>
                     <span class="badge badge-full">Full-time</span>
                 </div>
-                <p class="job-desc">Responsible for black-box testing, designing comprehensive test case suites, and ensuring system quality across internal web apps.</p>
+                <p class="job-desc">Execute automated testing suite cycles, build out automated UI web validation frameworks, and perform strict validation coverage maps.</p>
                 <div class="job-card-footer">
-                    <span class="job-meta">📍 Lahore (Hybrid)</span>
-                    <span class="job-meta">💰 PKR 100k+</span>
+                    <span class="job-meta">📍 Lahore, Pakistan</span>
+                    <span class="job-meta">💰 Rs 85,000 / mo</span>
                     <button class="btn-apply">Apply Now</button>
                 </div>
             </article>
 
-        </section>
-
+            <article class="job-card">
+                <div class="job-card-header">
+                    <div>
+                        <span class="company-name">Inovative Studio</span>
+                        <h3>Junior UI/UX Engineer</h3>
+                    </div>
+                    <span class="badge badge-full">Full-time</span>
+                </div>
+                <p class="job-desc">Translate interactive wireframe blueprints into technical style definitions, maintain scalable layout structures, and collaborate on layout flows.</p>
+                <div class="job-card-footer">
+                    <span class="job-meta">📍 Remote, PK</span>
+                    <span class="job-meta">💰 Rs 60,000 / mo</span>
+                    <button class="btn-apply">Apply Now</button>
+                </div>
+            </article>
+        </div>
     </main>
 
     <footer class="portal-footer">
-        <div class="footer-container">
-            
+        <div class="footer-grid">
             <div class="footer-brand">
-                <div class="logo">Zynvex<span>Jobs</span></div>
-                <p>Connecting elite software engineering talent with premium production platforms across Pakistan.</p>
-                <div class="system-status">
-                    <span class="status-dot"></span> All Systems Operational
-                </div>
+                <div class="logo" style="margin-bottom: 15px;">Zynvex<span>Jobs</span></div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">The premier tech employment marketplace for junior software development and frontend engineering talent.</p>
             </div>
-
-            <div class="footer-links-col">
-                <h4>Platform</h4>
-                <a href="index.html">Find Jobs</a>
+            
+            <div class="footer-links-column">
+                <h4>For Candidates</h4>
+                <a href="index.html">Browse Jobs</a>
                 <a href="companies.html">Top Companies</a>
-                <a href="dashboard.html">Employer Dashboard</a>
+                <a href="dashboard.html">Developer Dashboard</a>
             </div>
 
-            <div class="footer-links-col">
-                <h4>Community</h4>
-                <a href="#">Git Guide</a>
-                <a href="#">UI/UX Foundations</a>
-                <a href="#">QA Frameworks</a>
+            <div class="footer-links-column">
+                <h4>For Employers</h4>
+                <a href="post-job.html">Post a Position</a>
+                <a href="#">Talent Sourcing</a>
+                <a href="#">Hiring Guide</a>
             </div>
 
             <div class="footer-newsletter">
@@ -142,7 +128,6 @@
                     <button class="btn-footer-sub">Join</button>
                 </div>
             </div>
-
         </div>
 
         <div class="footer-bottom">
@@ -154,30 +139,41 @@
             </div>
         </div>
     </footer>
-    <div id="applyModal" class="modal-wrapper">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Submit Application</h3>
-            <button id="closeModal" class="btn-close">&times;</button>
-        </div>
-        <form id="applyForm">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" required placeholder="Ali Khan">
-            </div>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" required placeholder="ali@example.com">
-            </div>
-            <div class="form-group">
-                <label>GitHub / Portfolio Link</label>
-                <input type="url" required placeholder="https://github.com/yourprofile">
-            </div>
-            <button type="submit" class="btn-post" style="width: 100%; margin-top: 15px;">Submit Application</button>
-        </form>
-    </div>
-</div>
-<script src="script.js"></script>
 
+    <div id="applyModal" class="modal-wrapper">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Submit Application</h3>
+                <button id="closeModal" class="btn-close">&times;</button>
+            </div>
+            <form id="applyForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Ali Khan">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required placeholder="ali@example.com">
+                </div>
+                <div class="form-group">
+                    <label>GitHub / Portfolio Link</label>
+                    <input type="url" required placeholder="https://github.com/yourprofile">
+                </div>
+                <button type="submit" class="btn-post" style="width: 100%; margin-top: 15px;">Submit Application</button>
+            </form>
+
+            <!-- Success Lottie Dynamic Overlay Wrapper Inside Modal Content -->
+<div id="successAnimationWrapper" style="display: none; text-align: center; padding: 20px 0;">
+    <!-- Lottie Player Web Component Library -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_6lim6pqf.json"  
+        background="transparent"  speed="1"  style="width: 150px; height: 150px; margin: 0 auto;"  autoplay></lottie-player>
+    <h3 style="color: #6ee7b7; margin-top: 15px; font-weight: 700;">Application Submitted!</h3>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Your frontend profile has been tracked to the developer dashboard.</p>
+</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
