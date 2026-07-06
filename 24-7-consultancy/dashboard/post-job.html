@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Strategic Intake Slot | 24-7 Consultancy</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="dash-layout">
+        <aside class="dash-sidebar">
+            <h3>Control Desk</h3>
+            <ul class="dash-menu">
+                <li><a href="index.html">Overview Portal</a></li>
+                <li class="active"><a href="post-job.html">Post Intake Slots</a></li>
+                <li><a href="../index.html" style="color:#ef4444;">Exit Session</a></li>
+            </ul>
+        </aside>
+        <main class="dash-content" style="max-width: 700px;">
+            <h2 style="color:var(--primary-deep); margin-bottom: 25px;">Authorize New Intakes</h2>
+            <form id="postIntakeForm">
+                <div class="form-group">
+                    <label>University / Corporate Name</label>
+                    <input type="text" id="intakeUni" class="form-control" required placeholder="e.g. University of Manchester">
+                </div>
+                <div class="form-group">
+                    <label>Target Intake Program</label>
+                    <input type="text" id="intakeTitle" class="form-control" required placeholder="e.g. MSc Advanced Computational Science">
+                </div>
+                <div class="form-group">
+                    <label>Geographical Target Region</label>
+                    <select id="intakeRegion" class="form-control">
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Germany">Germany</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">Publish Intake Slot</button>
+            </form>
+        </main>
+    </div>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>
