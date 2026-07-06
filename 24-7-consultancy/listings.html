@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Batches & Intakes | 24-7 Consultancy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-brand">24-7<span>Consultancy</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="listings.html" class="nav-link">Active Intakes</a></li>
+                <li><a href="dashboard/index.html" class="nav-link">Student Portal</a></li>
+                <li><a href="login.html" class="btn-nav">Sign In</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container" style="margin-top: 50px;">
+        <h2 style="color: var(--primary-deep); margin-bottom: 10px;">Global Intake Search Desk</h2>
+        <p style="color: #64748b; margin-bottom: 30px;">Filter and lookup verified computational tracks for international batches instantly.</p>
+
+        <!-- DAY 7: Search & Filter Logic Hook -->
+        <div class="filter-section">
+            <input type="text" id="searchBar" class="search-input" placeholder="Search by University, Program or Destination...">
+            <select id="regionFilter" class="filter-select">
+                <option value="all">All Global Regions</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Germany">Germany</option>
+            </select>
+        </div>
+
+        <!-- Dynamic Jobs Rendering Target -->
+        <div id="listingsTarget" class="jobs-grid">
+            <!-- JavaScript will render tracks here dynamic -->
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
