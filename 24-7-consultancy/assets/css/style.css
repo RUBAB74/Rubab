@@ -1,10 +1,31 @@
-/* Global Color Variables & Themes */
+/* ==========================================================================
+   24-7 CONSULTANCY — "DEPARTURE DESK" DESIGN SYSTEM
+   A visa / boarding-pass inspired identity for a study-abroad consultancy.
+   Palette: aged parchment paper, passport-ink navy, airmail red, foil gold.
+   ========================================================================== */
+
 :root {
-    --primary-deep: #1a365d;       /* Royal Blue Tone */
-    --accent-vibrant: #3182ce;     /* Bright Blue for Buttons */
-    --text-dark: #2c3e50;          /* Charcoal text for better readability */
-    --bg-light: #f8fafc;           /* Sleek grayish white background */
-    --font-primary: 'Plus Jakarta Sans', sans-serif;
+    /* -- Core palette -- */
+    --ink: #16233F;                 /* Passport-cover navy */
+    --ink-soft: #263A63;            /* Lighter ink for gradients/hover */
+    --parchment: #F4EFE2;           /* Aged paper background */
+    --parchment-card: #FBF8EF;      /* Slightly lighter card paper */
+    --paper-line: #D8CFB6;          /* Hairline / perforation tone on paper */
+    --airmail-red: #B8433D;         /* Airmail stripe / stamp red */
+    --gold: #A9822F;                /* Foil stamp gold */
+    --gold-soft: rgba(169, 130, 47, 0.14);
+    --charcoal: #2A2620;            /* Primary text (warm near-black) */
+    --muted: #7A7263;               /* Secondary / aged-ink text */
+
+    /* Legacy variable names kept so nothing silently breaks */
+    --primary-deep: var(--ink);
+    --accent-vibrant: var(--airmail-red);
+    --text-dark: var(--charcoal);
+    --bg-light: var(--parchment);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-primary: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
 }
 
 /* Base Level Universal Reset */
@@ -17,10 +38,18 @@
 /* Global Body Styling */
 body {
     font-family: var(--font-primary);
-    background-color: var(--bg-light);
-    color: var(--text-dark);
-    line-height: 1.25;
+    background-color: var(--parchment);
+    background-image:
+        linear-gradient(rgba(184, 67, 61, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22, 35, 63, 0.03) 1px, transparent 1px);
+    background-size: 100% 3rem, 3rem 100%;
+    color: var(--charcoal);
+    line-height: 1.5;
     overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 /* Smooth Container Layout Helpers */
@@ -31,20 +60,46 @@ body {
     padding: 0 20px;
 }
 
-/* 
+/* Small typographic utilities used across pages */
+.eyebrow-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--airmail-red);
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2.1rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+    color: var(--muted);
+    margin-bottom: 34px;
+    font-size: 1.02rem;
+    max-width: 620px;
+}
+
+/*
     PREMIUM NAVBAR, FOOTER & HERO UI STYLES
    */
 
-/* Modern Translucent Header / Navbar */
+/* Letterhead-style Header / Navbar */
 .site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    transition: all 0.3s ease;
+    background: var(--parchment-card);
+    border-bottom: 2px solid var(--ink);
+    box-shadow: 0 1px 0 var(--paper-line);
 }
 
 .nav-container {
@@ -55,15 +110,16 @@ body {
 }
 
 .logo-brand {
-    font-size: 1.4rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-deep);
+    color: var(--ink);
     text-decoration: none;
     letter-spacing: -0.5px;
 }
 
 .logo-brand span {
-    color: var(--accent-vibrant);
+    color: var(--airmail-red);
 }
 
 .nav-menu {
@@ -74,126 +130,230 @@ body {
 }
 
 .nav-link {
-    color: var(--text-dark);
+    color: var(--charcoal);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
     transition: color 0.25s ease;
 }
 
 .nav-link:hover {
-    color: var(--accent-vibrant);
+    color: var(--airmail-red);
 }
 
 .btn-nav {
-    background-color: var(--primary-deep);
+    background-color: var(--ink);
     color: #ffffff;
     padding: 10px 22px;
-    border-radius: 8px;
+    border-radius: 3px;
     font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .btn-nav:hover {
-    background-color: var(--accent-vibrant);
+    background-color: var(--airmail-red);
     color: #ffffff;
     transform: translateY(-1px);
 }
 
-/* Day 3: Premium Hero Banner Section */
+/* Hero Section: houses the boarding-pass signature element */
 .hero-section {
-    padding: 100px 0 80px 0;
-    background: radial-gradient(circle at top right, rgba(49, 130, 206, 0.08), transparent 45%),
-                radial-gradient(circle at bottom left, rgba(26, 54, 93, 0.04), transparent 50%);
-    text-align: center;
+    padding: 70px 0 60px 0;
+    text-align: left;
 }
 
 .hero-content {
-    max-width: 850px;
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+/* --- Signature element: the boarding pass --- */
+.boarding-pass {
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    background: var(--parchment-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 6px;
+    box-shadow: 0 18px 40px -18px rgba(22, 35, 63, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.boarding-pass::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--airmail-red) 0 14px,
+        var(--ink) 14px 28px,
+        var(--parchment-card) 28px 34px
+    );
+}
+
+.boarding-pass__main {
+    padding: 52px 48px 44px 48px;
 }
 
 .badge-tag {
     display: inline-block;
-    background-color: rgba(49, 130, 206, 0.1);
-    color: var(--accent-vibrant);
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    background-color: var(--gold-soft);
+    color: var(--gold);
+    padding: 6px 14px;
+    border: 1px dashed var(--gold);
+    border-radius: 3px;
+    font-size: 0.78rem;
     font-weight: 600;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--primary-deep);
-    line-height: 1.15;
+    font-family: var(--font-display);
+    font-size: 2.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.12;
     letter-spacing: -1px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .hero-title span {
-    color: var(--accent-vibrant);
+    color: var(--airmail-red);
+    font-style: italic;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
-    color: #4a5568;
-    max-width: 650px;
-    margin: 0 auto 35px auto;
-    line-height: 1.6;
+    font-size: 1.08rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 0 30px 0;
+    line-height: 1.65;
 }
 
 .hero-cta-group {
     display: flex;
-    justify-content: center;
     gap: 15px;
 }
 
 .btn-primary {
-    background-color: var(--accent-vibrant);
+    background-color: var(--ink);
     color: #ffffff;
-    padding: 14px 30px;
-    border-radius: 8px;
+    padding: 14px 28px;
+    border-radius: 3px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 14px rgba(49, 130, 206, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-deep);
+    background-color: var(--airmail-red);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(26, 54, 93, 0.2);
 }
 
 .btn-secondary {
-    background-color: #ffffff;
-    color: var(--primary-deep);
-    padding: 14px 30px;
-    border-radius: 8px;
+    background-color: transparent;
+    color: var(--ink);
+    padding: 14px 28px;
+    border-radius: 3px;
     text-decoration: none;
     font-weight: 600;
-    border: 1px solid rgba(26, 54, 93, 0.15);
+    font-size: 0.95rem;
+    border: 1.5px solid var(--ink);
     transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
-    background-color: var(--bg-light);
-    border-color: var(--primary-deep);
+    background-color: var(--ink);
+    color: #ffffff;
     transform: translateY(-2px);
+}
+
+/* Perforation divider between main pass and stub */
+.boarding-pass__perforation {
+    position: relative;
+    border-left: 2px dashed var(--paper-line);
+}
+
+.boarding-pass__perforation::before,
+.boarding-pass__perforation::after {
+    content: '';
+    position: absolute;
+    left: -11px;
+    width: 22px;
+    height: 22px;
+    background: var(--parchment);
+    border-radius: 50%;
+    border: 1px solid var(--paper-line);
+}
+
+.boarding-pass__perforation::before { top: -11px; }
+.boarding-pass__perforation::after { bottom: -11px; }
+
+.boarding-pass__stub {
+    background: var(--ink);
+    color: #ffffff;
+    padding: 40px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+}
+
+.stub-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 16px;
+}
+
+.boarding-pass__stub .stub-label:first-child { margin-top: 0; }
+
+.stub-value {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.stub-stamp {
+    position: absolute;
+    bottom: 28px;
+    right: 24px;
+    width: 76px;
+    height: 76px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-18deg);
+    opacity: 0.9;
 }
 
 /* Day 2: Interactive Multi-column Footer */
 .site-footer {
-    background-color: var(--primary-deep);
+    background-color: var(--ink);
     color: #cbd5e1;
     padding: 70px 0 30px 0;
     margin-top: 100px;
-    border-top: 4px solid var(--accent-vibrant);
+    border-top: 6px solid var(--airmail-red);
 }
 
 .footer-grid {
@@ -212,7 +372,10 @@ body {
 
 .footer-title {
     color: #ffffff;
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     font-weight: 600;
     margin-bottom: 20px;
 }
@@ -238,23 +401,41 @@ body {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(148, 163, 184, 0.15);
+    border-top: 1px dashed rgba(148, 163, 184, 0.25);
     padding-top: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
     color: #64748b;
 }
 
 /* Responsive Breakpoints */
+@media (max-width: 860px) {
+    .boarding-pass {
+        grid-template-columns: 1fr;
+    }
+    .boarding-pass__perforation {
+        border-left: none;
+        border-top: 2px dashed var(--paper-line);
+        height: 2px;
+    }
+    .boarding-pass__perforation::before { top: -11px; left: 24px; }
+    .boarding-pass__perforation::after { bottom: -11px; left: auto; right: 24px; }
+    .stub-stamp { bottom: 20px; right: 20px; }
+}
+
 @media (max-width: 768px) {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
     .hero-title {
-        font-size: 2.3rem;
+        font-size: 2.1rem;
+    }
+    .boarding-pass__main {
+        padding: 38px 28px 32px 28px;
     }
     .hero-cta-group {
         flex-direction: column;
@@ -264,7 +445,7 @@ body {
     }
 }
 
-/* 
+/*
 LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
     */
 
@@ -273,37 +454,41 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    margin: 40px 0;
+    margin: 50px 0 40px 0;
 }
 
 .stat-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--parchment-card);
+    border: 1px solid var(--paper-line);
+    border-top: 3px solid var(--gold);
     padding: 24px;
-    border-radius: 12px;
+    border-radius: 4px;
     text-align: center;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .stat-card h3 {
-    font-size: 2.2rem;
-    color: var(--primary-deep);
+    font-family: var(--font-mono);
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--ink);
     margin-bottom: 5px;
 }
 
 .stat-card p {
-    color: #64748b;
-    font-size: 0.9rem;
+    color: var(--muted);
+    font-size: 0.85rem;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Listings Page & Filter Control */
 .filter-section {
-    background: #ffffff;
+    background: var(--parchment-card);
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 4px;
     margin-bottom: 35px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--paper-line);
     display: flex;
     gap: 15px;
     align-items: center;
@@ -311,11 +496,17 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
 
 .search-input, .filter-select {
     padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    border: 1px solid var(--paper-line);
+    background: #ffffff;
+    border-radius: 3px;
     font-family: var(--font-primary);
     font-size: 0.95rem;
-    color: var(--text-dark);
+    color: var(--charcoal);
+}
+
+.search-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: var(--airmail-red);
 }
 
 .search-input { flex: 2; }
@@ -328,54 +519,126 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
     margin-bottom: 60px;
 }
 
+/* Job cards styled as visa dossier stamps */
 .job-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 25px;
-    border: 1px solid #e2e8f0;
+    background: var(--parchment-card);
+    border-radius: 4px;
+    padding: 24px 25px 20px 25px;
+    border: 1px solid var(--paper-line);
+    border-bottom: 3px solid var(--ink);
     transition: all 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
 
 .job-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+    border-bottom-color: var(--airmail-red);
+    box-shadow: 0 14px 24px -12px rgba(22, 35, 63, 0.25);
 }
 
 .job-badge {
     align-self: flex-start;
-    background: rgba(49, 130, 206, 0.1);
-    color: var(--accent-vibrant);
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
+    background: transparent;
+    color: var(--airmail-red);
+    border: 1px solid var(--airmail-red);
+    padding: 3px 11px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     margin-bottom: 15px;
 }
 
 .job-title {
-    font-size: 1.25rem;
-    color: var(--primary-deep);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.28rem;
+    color: var(--ink);
     margin-bottom: 8px;
+    line-height: 1.3;
 }
 
 .job-meta {
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--muted);
     margin-bottom: 15px;
 }
 
-/* Premium Auth Glass Layout */
+.job-card > div:last-child {
+    border-top: 1px dashed var(--paper-line) !important;
+}
+
+.job-card > div:last-child span {
+    font-family: var(--font-mono) !important;
+    font-size: 0.78rem !important;
+}
+
+/* Premium Auth / Entry-Pass Layout */
 .auth-wrapper {
     max-width: 420px;
-    margin: 80px auto;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 16px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05);
+    margin: 70px auto;
+    background: var(--parchment-card);
+    padding: 44px 40px 40px 40px;
+    border-radius: 6px;
+    border: 1px solid var(--paper-line);
+    box-shadow: 0 20px 40px -18px rgba(22, 35, 63, 0.3);
+    position: relative;
+}
+
+.auth-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--airmail-red) 0 12px,
+        var(--ink) 12px 24px,
+        var(--parchment-card) 24px 29px
+    );
+}
+
+.auth-stamp {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    width: 62px;
+    height: 62px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    transform: rotate(12deg);
+    opacity: 0.85;
+}
+
+.auth-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.auth-subtitle {
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 32px;
 }
 
 .form-group {
@@ -384,37 +647,51 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
 
 .form-group label {
     display: block;
-    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--primary-deep);
+    color: var(--ink);
 }
 
 .form-control {
     width: 100%;
     padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    border: 1px solid var(--paper-line);
+    background: #ffffff;
+    border-radius: 3px;
     font-family: var(--font-primary);
+    color: var(--charcoal);
 }
 
 .form-control:focus {
     outline: none;
-    border-color: var(--accent-vibrant);
-    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+    border-color: var(--airmail-red);
+    box-shadow: 0 0 0 3px rgba(184, 67, 61, 0.12);
 }
 
 /* Dashboard Functional Structures */
 .dash-layout {
     display: grid;
     grid-template-columns: 260px 1fr;
-    min-height: 80vh;
+    min-height: 100vh;
 }
 
 .dash-sidebar {
-    background: var(--primary-deep);
+    background: var(--ink);
     color: #ffffff;
     padding: 30px 20px;
+    border-right: 4px solid var(--airmail-red);
+}
+
+.dash-sidebar h3 {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .dash-menu {
@@ -427,49 +704,60 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
     color: #94a3b8;
     padding: 12px 15px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 3px;
     margin-bottom: 8px;
     font-weight: 500;
+    font-size: 0.92rem;
 }
 
 .dash-menu li.active a, .dash-menu li a:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
     color: #ffffff;
 }
 
 .dash-content {
-    padding: 40px;
-    background: #f8fafc;
+    padding: 44px;
+    background: var(--parchment);
 }
 
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 8px;
+    background: var(--parchment-card);
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--paper-line);
 }
 
 .data-table th, .data-table td {
     padding: 16px;
     text-align: left;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--paper-line);
 }
 
 .data-table th {
-    background: #f1f5f9;
-    color: var(--primary-deep);
+    background: var(--ink);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
     font-weight: 600;
 }
 
+.data-table td:first-child {
+    font-family: var(--font-mono);
+}
 
+.data-table tbody tr:nth-child(even) {
+    background: rgba(169, 130, 47, 0.05);
+}
 
 /*  Entry Fade-in Animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(16px);
     }
     to {
         opacity: 1;
@@ -478,23 +766,7 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
 }
 
 .hero-content, .stats-grid, .filter-section, .jobs-grid, .auth-wrapper {
-    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* Day 10: Glassmorphism Variables & Enhancements */
-.job-card, .stat-card, .filter-section, .auth-wrapper {
-    background: rgba(255, 255, 255, 0.75) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(226, 232, 240, 0.7) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* Interactive Card Hovers */
-.job-card:hover {
-    transform: translateY(-6px) scale(1.01) !important;
-    border-color: var(--accent-vibrant) !important;
-    box-shadow: 0 20px 25px -5px rgba(49, 130, 206, 0.1), 0 10px 10px -5px rgba(49, 130, 206, 0.04) !important;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Micro-interactions for Links & Icons */
@@ -509,7 +781,7 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: var(--accent-vibrant);
+    background-color: var(--airmail-red);
     transition: width 0.2s ease;
 }
 
