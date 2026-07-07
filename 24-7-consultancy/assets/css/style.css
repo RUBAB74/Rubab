@@ -31,9 +31,9 @@ body {
     padding: 0 20px;
 }
 
-/* ==========================================================================
-   DAY 2 & DAY 3: PREMIUM NAVBAR, FOOTER & HERO UI STYLES
-   ========================================================================== */
+/* 
+    PREMIUM NAVBAR, FOOTER & HERO UI STYLES
+   */
 
 /* Modern Translucent Header / Navbar */
 .site-header {
@@ -264,9 +264,9 @@ body {
     }
 }
 
-/* ==========================================================================
+/* 
 LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
-   ========================================================================= */
+    */
 
 /* Premium Info Analytics Cards */
 .stats-grid {
@@ -461,4 +461,67 @@ LISTINGS, LOGIN & INTERNSHIP DASHBOARD UI PANELS
     background: #f1f5f9;
     color: var(--primary-deep);
     font-weight: 600;
+}
+
+
+
+/*  Entry Fade-in Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content, .stats-grid, .filter-section, .jobs-grid, .auth-wrapper {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Day 10: Glassmorphism Variables & Enhancements */
+.job-card, .stat-card, .filter-section, .auth-wrapper {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(226, 232, 240, 0.7) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Interactive Card Hovers */
+.job-card:hover {
+    transform: translateY(-6px) scale(1.01) !important;
+    border-color: var(--accent-vibrant) !important;
+    box-shadow: 0 20px 25px -5px rgba(49, 130, 206, 0.1), 0 10px 10px -5px rgba(49, 130, 206, 0.04) !important;
+}
+
+/* Micro-interactions for Links & Icons */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-vibrant);
+    transition: width 0.2s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.footer-links a i {
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover i {
+    transform: translateX(4px);
 }
