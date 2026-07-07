@@ -1,4 +1,4 @@
-// Day 5 & 6: Data Repository Layout initialization using LocalStorage
+//  Data Repository Layout initialization using LocalStorage
 const defaultIntakes = [
     { id: "TK-9021", university: "University of Manchester", title: "MSc Advanced Computational Science", region: "United Kingdom", status: "Verified Routing" },
     { id: "TK-4412", university: "Technical University of Munich", title: "BSc Data Engineering Track", region: "Germany", status: "Pipeline Evaluation" },
@@ -9,7 +9,7 @@ if (!localStorage.getItem('globalIntakes')) {
     localStorage.setItem('globalIntakes', JSON.stringify(defaultIntakes));
 }
 
-// Day 7: Filter Engine Logic
+//  Filter Engine Logic
 document.addEventListener("DOMContentLoaded", () => {
     const target = document.getElementById("listingsTarget");
     if (!target) return; // Prevent script crash if not on listings screen
@@ -23,16 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         array.forEach(item => {
-            target.innerHTML += `
-                <div class="job-card">
-                    <div>
-                        <div class="job-badge">${item.region}</div>
-                        <h3 class="job-title">${item.title}</h3>
-                        <p class="job-meta">🏢 ${item.university}</p>
-                    </div>
-                    <span style="font-size:0.85rem; font-weight:600; color:var(--accent-vibrant)">System Route: ${item.status}</span>
-                </div>
-            `;
+            
+target.innerHTML += `
+    <div class="job-card">
+        <div>
+            <div class="job-badge"><i class="bi bi-geo-alt-fill"></i> ${item.region}</div>
+            <h3 class="job-title">${item.title}</h3>
+            <p class="job-meta"><i class="bi bi-building"></i> ${item.university}</p>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px; padding-top:10px; border-top:1px solid rgba(0,0,0,0.05)">
+            <span style="font-size:0.85rem; font-weight:600; color:var(--accent-vibrant)">
+                <i class="bi bi-shield-check"></i> Route: ${item.status}
+            </span>
+            <i class="bi bi-arrow-right-short" style="font-size:1.5rem; color:var(--accent-vibrant)"></i>
+        </div>
+    </div>
+`;
         });
     };
 
@@ -58,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     filter.addEventListener("change", performFilter);
 });
 
-// Day 8: Authentication Identity Verification Check
+// Authentication Identity Verification Check
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
