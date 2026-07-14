@@ -2,36 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Candidate Panel | 24-7 Consultancy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Desk | 24-7 Consultancy</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+
     <div class="dash-layout">
         <aside class="dash-sidebar">
-            <h3>Control Desk</h3>
+            <h3 style="margin-bottom: 25px; font-family: var(--font-display);">24-7<span>Desk</span></h3>
             <ul class="dash-menu">
-                <li class="active"><a href="index.html">Overview Portal</a></li>
-                <li><a href="post-job.html">Post Intake Slots</a></li>
-                <li><a href="../index.html" style="color:#ef4444;">Exit Session</a></li>
+                <li class="active"><a href="index.html"><i class="bi bi-speedometer2"></i> Overview Portal</a></li>
+                <li><a href="post-job.html"><i class="bi bi-plus-circle"></i> Post Intake Slots</a></li>
+                <li><a href="../index.html" style="color:#ef4444;"><i class="bi bi-box-arrow-left"></i> Exit Session</a></li>
             </ul>
         </aside>
+
         <main class="dash-content">
-            <h2 style="color:var(--primary-deep); margin-bottom: 25px;">Candidate Verification Metrics</h2>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Intake Tracking ID</th>
-                        <th>Institution Program</th>
-                        <th>Region Gateway</th>
-                        <th>Pipeline Status</th>
-                    </tr>
-                </thead>
-                <tbody id="dashTableBody">
-                    <!-- Dynamic Rows Insertion -->
-                </tbody>
-            </table>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div>
+                    <h2 style="color:var(--primary-deep);">Global Routing Console</h2>
+                    <p style="color: var(--muted); font-size: 0.9rem;">Real-time active intakes and student registration logs.</p>
+                </div>
+                <a href="post-job.html" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem;"><i class="bi bi-plus"></i> Add New Slot</a>
+            </div>
+
+            <h3 style="color: var(--primary-deep); margin-bottom: 15px; font-family: var(--font-display); font-size: 1.2rem; border-left: 3px solid var(--airmail-red); padding-left: 10px;">Authorized Intake Streams</h3>
+            <div style="overflow-x: auto; margin-bottom: 50px;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Intake ID</th>
+                            <th>Target Program & University</th>
+                            <th>Geographical Region</th>
+                            <th>Current Routing Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashTableBody">
+                        </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--primary-deep); margin-bottom: 15px; font-family: var(--font-display); font-size: 1.2rem; border-left: 3px solid var(--gold); padding-left: 10px;">Received Student Applications</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr style="background-color: var(--gold-soft);">
+                            <th>App ID</th>
+                            <th>Student Details</th>
+                            <th>Applied Program & University</th>
+                            <th>Qualification</th>
+                            <th>Submission Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appsTableBody">
+                        </tbody>
+                </table>
+            </div>
         </main>
     </div>
+
     <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>
